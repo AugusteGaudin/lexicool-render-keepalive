@@ -1,4 +1,4 @@
-name: Keep Render API Awake
+name: Keep Render APIs Awake
 
 on:
   schedule:
@@ -9,6 +9,10 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Lexicool API
+      - name: Ping Lexicool API 1
         run: |
           curl -s -o /dev/null -w "%{http_code}" https://api-lexicool.onrender.com/ping
+
+      - name: Ping Lexicool API 2
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" https://api-lexicool2.onrender.com/ping
