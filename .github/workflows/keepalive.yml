@@ -11,8 +11,16 @@ jobs:
     steps:
       - name: Ping Lexicool API 1
         run: |
-          curl -s -o /dev/null -w "%{http_code}" https://api-lexicool.onrender.com/ping
+          set -e
+          echo "Pinging API 1..."
+          code=$(curl -sS -m 20 -o /dev/null -w "%{http_code}" https://api-lexicool.onrender.com/ping)
+          echo "API 1 HTTP $code"
+          test "$code" = "200"
 
       - name: Ping Lexicool API 2
         run: |
-          curl -s -o /dev/null -w "%{http_code}" https://api-lexicool2.onrender.com/ping
+          set -e
+          echo "Pinging API 2..."
+          code=$(curl -sS -m 20 -o /dev/null -w "%{http_code}" https://api-lexicool2.onrender.com/ping)
+          echo "API 2 HTTP $code"
+          test "$code" = "200"
